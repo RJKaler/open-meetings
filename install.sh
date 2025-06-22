@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/bin/bash -e
 
 #shellcheck disable=all
  
 log_file="$PWD/server_install.log"
 
+#For repeated updates
 update() { sudo apt-get update && sudo apt-get upgrade -y; }
+#Abort at error 
 error() { echo "Error. Abort!" && exit 1; }
 
 #requirements: java, nano, libre office, ImageMagick, Sox
@@ -14,7 +16,7 @@ error() { echo "Error. Abort!" && exit 1; }
 echo "updating system..." 
 update
 
-require() {
+required_install() {
     #nano install 
     sudo apt-get install nano -y  &&
     #java install
@@ -23,4 +25,4 @@ require() {
 
 echo "installing requirements..."
 
-require || error 
+required_install || error 
