@@ -92,40 +92,17 @@ do
     fi
 done
 
-echo "In order for the server to work, a database must be created" 
-read -rep "Do you want to create it now (y|n): " ans 
+echo "A database has been installed but the setup is not complete." 
+echo "In order for this program to work, the database must fully installed."
+echo "You can continue setting up the database or exit this program now"
+read -rep "Do you want to continue (y|n)? " ans 
 
 if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
     echo "OK - proceeding" 
 else 
-    echo "OK - skipping" 
+    echo "OK - exiting script now" 
+    exit 0
 fi
 
+#NOTE: MariaDB password defined by $db_password
 
-
-
-#echo "finished!"
-#required_install() {
-#update system
-#update
-#java install
-#yes y | sudo add-apt-repository ppa:libreoffice/ppa &&
-#update system
-#update  &&
-##Install libre office 
-#sudo apt-get install libreoffice -y &&
-#update system
-#update &&
-#Install imagemagick
-#sudo apt-get install imagemagick libjpeg62 zlib1g-dev -y &&
-#update system
-#update &&
-#Install sox for audio
-#sudo apt-get install sox -y && 
-#update the system
-#update 
-#}
-
-#echo "installing requirements..."
-
-#{ required_install || { error; } } | tee -a "$log_file" 
