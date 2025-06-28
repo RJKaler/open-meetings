@@ -84,7 +84,6 @@ do
     read -resp "Confirm database password: " password2
     if [ "$password1" = "$password2" ]; then
         db_password="$password1"
-        echo "You entered $db_password"
         echo "Passwords match. Success!" 
         break 
     else
@@ -92,10 +91,18 @@ do
     fi
 done
 
-echo "A database has been installed but the setup is not complete." 
-echo "In order for this program to work, the database must fully installed."
-echo "You can continue setting up the database or exit this program now"
-read -rep "Do you want to continue (y|n)? " ans 
+echo "Now applying password to database" 
+
+if sudo mysqladmin -u root password "$db_password" || error; then 
+    echo "successfully set root password" 
+fi
+
+
+echo "==> A database has been installed but the setup is incomplete." 
+echo "==> In order for this program to work, the database must fully installed."
+echo "==> You can continue setting up the database or exit this program now."
+echo "==> Do you want to continue? (y|n) " 
+read -rep "==> " ans
 
 if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
     echo "OK - proceeding" 
@@ -103,6 +110,9 @@ else
     echo "OK - exiting script now" 
     exit 0
 fi
+
+#
+#set password for mysql 
 
 #NOTE: MariaDB password defined by $db_password
 
