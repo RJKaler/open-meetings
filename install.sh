@@ -127,3 +127,13 @@ MariaDB [(none)]> quit
 (At this point, we will have exited the database to proceed with the remaining installation steps.)
 ===================================================\n"
 
+read -rep "You can proceed once the steps above are finished.
+Ready to proceed (y|n): " ans
+
+if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
+    echo "OK - proceeding" 
+else 
+    echo "OK - exiting script now" 
+    exit 0
+fi
+
