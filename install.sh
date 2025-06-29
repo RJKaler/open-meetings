@@ -153,11 +153,11 @@ echo "Successfully extracted OpenMeetings archive."
 
 target="/opt/open800"
 
+#move apache directory to "target"
 sudo mv -v apache-openmeetings-8.0.0 "$target" || { error; }  
 
 
 #Change ownership of "target" above 
-
 sudo chown -R nobody:nogroup "$target"
 
 #Install connector program 
