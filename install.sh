@@ -125,7 +125,7 @@ MariaDB [(none)]> CREATE DATABASE open800 DEFAULT CHARACTER SET 'utf8';
 
 (IMPORTANT: We are creating a new password. Unless the only user is root, for optimal security, use a different password below. Please make note of your password below as it will be used later. Note, \"[username]\" below can be an already existing user. If that user does not already exist elsewhere on the system, it will be created here.) 
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON open800.* TO '[username]'@'localhost' IDENTIFIED BY '1a2B3c4D' WITH GRANT OPTION;
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON open800.* TO '[username]'@'localhost' IDENTIFIED BY '[password]' WITH GRANT OPTION;
 
 MariaDB [(none)]> quit
 (At this point, we will have exited the database to proceed with the remaining installation steps.)
