@@ -195,7 +195,7 @@ sudo wget "$tomcat_url" || error
 
 echo "Starting tomcat..." 
 
- sudo /etc/init.d/tomcat4 || error 
+ sudo /etc/init.d/tomcat4 start || error 
 
 echo "Waiting for tomcat just to be sure..." 
 
