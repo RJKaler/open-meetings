@@ -79,58 +79,58 @@ if sudo apt-get install mariadb-server -y || error; then
     fi
 fi
 
-#echo "Configuring MariaDB database" 
-#echo "================================================================="
-#while : 
-#do
-#    read -resp "Create password for database root user (please keep note of password): " password1
-#    read -resp "Confirm password: " password2
-#    if [ "$password1" = "$password2" ]; then
-#        db_password="$password1"
-#        echo "Passwords match. Success!" 
-#        break 
-#    else
-#        echo "Passwords do not match. Please try again."
-#    fi
-#done
+echo "Configuring MariaDB database" 
+echo "================================================================="
+while : 
+do
+    read -resp "Create password for database root user (please keep note of password): " password1
+    read -resp "Confirm password: " password2
+    if [ "$password1" = "$password2" ]; then
+        db_password="$password1"
+        echo "Passwords match. Success!" 
+        break 
+    else
+        echo "Passwords do not match. Please try again."
+    fi
+done
 
-#echo "Now applying password to database" 
+echo "Now applying password to database" 
 
 ##set password for mysql 
-#if sudo mysqladmin -u root password "$db_password" || error; then 
-#    echo "root password set" 
-#fi
+if sudo mysqladmin -u root password "$db_password" || error; then 
+    echo "root password set" 
+fi
 
 
-#echo "==> A database has been installed but the setup is incomplete." 
-#echo "==> In order for OpenMeetings to work, the database setup process must be completed."
-#echo "==> You can continue setting up the database or exit this program now."
-#echo "==> Do you want to continue? (y|n): " 
-#read -rep "==> " ans
+echo "==> A database has been installed but the setup is incomplete." 
+echo "==> In order for OpenMeetings to work, the database setup process must be completed."
+echo "==> You can continue setting up the database or exit this program now."
+echo "==> Do you want to continue? (y|n): " 
+read -rep "==> " ans
 
-#if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
-#    echo "OK - proceeding" 
-#else 
-#    echo "OK - exiting script now" 
-#    exit 0
-#fi
-#
-#echo -e "\n======> Please follow the instructions below <======
-#
-#1.) Log into database (WITHOUT sudo) using the password you just created. Type: mysql -u root -p 
-#
-#2.) Enter the following once logged in: 
-#
-#MariaDB [(none)]> CREATE DATABASE open800 DEFAULT CHARACTER SET 'utf8';
-#
-#(IMPORTANT: We are creating a new password. Unless the only user is root, for optimal security, use a different password below. Please make note of your password below as it will be used later. Note, \"[username]\" below can be an already existing user. If that user does not already exist elsewhere on the system, it will be created here.) 
-#
-#MariaDB [(none)]> GRANT ALL PRIVILEGES ON open800.* TO '[username]'@'localhost' IDENTIFIED BY '1a2B3c4D' WITH GRANT OPTION;
-#
-#MariaDB [(none)]> quit
-#(At this point, we will have exited the database to proceed with the remaining installation steps.)
-#===================================================\n"
-#
+if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
+    echo "OK - proceeding" 
+else 
+    echo "OK - exiting script now" 
+    exit 0
+fi
+
+echo -e "\n======> Please follow the instructions below <======
+
+1.) Log into database (WITHOUT sudo) using the password you just created. Type: mysql -u root -p 
+
+2.) Enter the following once logged in: 
+
+MariaDB [(none)]> CREATE DATABASE open800 DEFAULT CHARACTER SET 'utf8';
+
+(IMPORTANT: We are creating a new password. Unless the only user is root, for optimal security, use a different password below. Please make note of your password below as it will be used later. Note, \"[username]\" below can be an already existing user. If that user does not already exist elsewhere on the system, it will be created here.) 
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON open800.* TO '[username]'@'localhost' IDENTIFIED BY '1a2B3c4D' WITH GRANT OPTION;
+
+MariaDB [(none)]> quit
+(At this point, we will have exited the database to proceed with the remaining installation steps.)
+===================================================\n"
+
 read -rep "You can proceed once the steps above are finished.
 Ready to proceed (y|n): " ans
 
