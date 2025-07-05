@@ -2,6 +2,9 @@
 
 ##shellcheck disable=all
 
+#NOTE: libre office path: /usr/lib/libreoffice
+
+
 #Source: https://cwiki.apache.org/confluence/display/openmeetings/tutorials+for+installing+openmeetings+and+tools?preview=/27838216/334761243/Installation%20OpenMeetings%208.0.0%20on%20Ubuntu%2024.04%20lts.pdf
  
 log_file="$PWD/server_install.log"
