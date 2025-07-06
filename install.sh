@@ -4,8 +4,9 @@
 
 #NOTE: libre office path: /usr/lib/libreoffice
 
+#SOURCE GUIDE: 
+#https://cwiki.apache.org/confluence/display/OPENMEETINGS/Tutorials+for+installing+OpenMeetings+and+Tools?preview=/27838216/334761243/Installation%20OpenMeetings%208.0.0%20on%20Ubuntu%2024.04%20lts.pdf
 
-#Source: https://cwiki.apache.org/confluence/display/openmeetings/tutorials+for+installing+openmeetings+and+tools?preview=/27838216/334761243/Installation%20OpenMeetings%208.0.0%20on%20Ubuntu%2024.04%20lts.pdf
  
 log_file="$PWD/server_install.log"
 
@@ -206,10 +207,15 @@ sleep 30s || error
 
 echo "finished!"
 
+openhelp() { firefox  https://cwiki.apache.org/confluence/display/OPENMEETINGS/Tutorials+for+installing+OpenMeetings+and+Tools?preview=/27838216/334761243/Installation%20OpenMeetings%208.0.0%20on%20Ubuntu%2024.04%20lts.pdf &>/dev/null & }
+
 echo -e "\n====================================="
 echo "One last step:"
 echo "Go to --> https://localhost:5443/openmeetings" 
-echo "Follow instructions to finish set up" 
+echo "Follow instructions to finish set up. See guide..." 
+openhelp
 echo "====================================="
+
+echo -e "finished at $(date)\n\n" >> "$log_file"  
 
 } | tee -a "$log_file"
