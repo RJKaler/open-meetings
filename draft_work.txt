@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#shellcheck disable=all
+#echo "Configuring username and password for OpenMeetings. For optimal security, please specify a user that is not \"root\"." 
+
+echo "Now it is time to set up a username and password to organize OpenMeetings." 
+
+while read -rep "Please enter a username. Ideally,  this user is not \"root\" " name  
+do
+    if [[ -z "$name" ]]; then 
+        echo "Error. A value is required" 
+        continue 
+    else 
+        while read -rep "You entered \"$name\". Is this correct (Y|N)? " ans
+        do
+        if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
+           echo  "OK - proceeding" 
+           break 2
+        fi
+        break 
+        done        
+    fi
+done
+
+   
