@@ -3,23 +3,58 @@
 #shellcheck disable=all
 #echo "Configuring username and password for OpenMeetings. For optimal security, please specify a user that is not \"root\"." 
 
-echo "Now it is time to set up a username and password to organize OpenMeetings." 
 
-while read -rep "Please enter a username. Ideally,  this user is not \"root\" " name  
-do
-    if [[ -z "$name" ]]; then 
-        echo "Error. A value is required" 
-        continue 
-    else 
-        while read -rep "You entered \"$name\". Is this correct (Y|N)? " ans
-        do
-        if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
-           echo  "OK - proceeding" 
-           break 2
-        fi
-        break 
-        done        
+#!/bin/bash
+
+# shellcheck disable=all
+
+echo "Now it is time to set up a username and password to organize OpenMeetings."
+
+while true; do
+    # Step 1: Prompt for input
+    read -rep "Please enter a username. Ideally, this user is not \"root\": " name
+
+    if [[ -z "$name" ]]; then
+        echo "Error. A value is required."
+        continue
     fi
+
+    # Step 2: Confirm the input
+    while true; do
+        read -rep "You entered \"$name\". Is this correct (Y|N)? " ans
+
+        if [[ "$ans" =~ ^[Yy](es)?$ ]]; then
+            echo "Created username \"$name\" - proceeding"
+            final_username="$name"
+            break 2   # \u2705 exit both confirmation and input loops
+        elif [[ "$ans" =~ ^[Nn](o)?$ ]]; then
+            echo "Let's try again..."
+            break     # \U0001f501 re-enter outer loop
+        else
+            echo "Please answer Y or N."
+        fi
+    done
 done
 
-   
+
+
+
+#OLD CODE AS A GUIDE 
+#echo "Now it is time to set up a username and password to organize OpenMeetings." 
+#
+#while read -rep "Please enter a username. Ideally,  this user is not \"root\" " name  
+#do
+#    if [[ -z "$name" ]]; then 
+#        echo "Error. A value is required" 
+#        continue 
+#        break 
+#    fi
+#    done
+#   
+#        while read -rep "You entered \"$name\". Is this correct (Y|N)? " ans
+#        do
+#        if [[ "$ans" =~ ^(y|Y|yes|Yes)$ ]]; then 
+#           echo  "OK - proceeding" 
+#           break 
+#        fi
+#    done
